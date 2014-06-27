@@ -1,3 +1,5 @@
+require 'mysql2'
+
 class FactStore
   CLIENT = Mysql2::Client.new(host: "localhost", username: "root", database: 'candi_development')
 
