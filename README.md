@@ -2,13 +2,25 @@
 Facts
 =====
 
+This repo provides the base classes for event sourcing and describing buisness logic w/ declarative rules.
+
+
 ### Facts
 
+Facts are immutable records of events that occur in the world or in our application.  Instead of storing the current state of objects in a problem domain, we can use events to store their entire history.  From the history, we can recreate their state at any point in time and can audit the state changes that brought them there.
+
+In terms of code, facts can be thought of as hashes w/ a unique id, type, set of causes, and any number of other named attributes.
+
+```ruby
+fact = Fact.new name: 'A'
+fact.name   # 'A'
+fact[:name] # 'A'
+```
 
 
 ### Rules
 
-Rules define a pattern using a block of PQL, and then accept a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.  Methods can also be defined for the rule, and will run in same context as the action. 
+Rules define a pattern using a block of PQL code, and then accept a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.  Methods can also be defined for the rule, and will run in same context as the action. 
 
 The action block is passed one argument, 'e', an `Entry` instance.  The entry has methods defined to write each fact type in the ontology.
 
