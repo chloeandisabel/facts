@@ -1,3 +1,6 @@
+require 'uuid'
+require 'ontology'
+
 class Fact
 
   def initialize(attrs)
