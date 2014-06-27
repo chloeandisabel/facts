@@ -8,4 +8,5 @@ class Stream
   def each(&block)
     @facts.each &block
   end
+
 end
