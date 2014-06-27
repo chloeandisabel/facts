@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name        = 'facts'
   s.version     = '0.0.0'
   s.date        = '2014-06-26'
-  s.summary     = 'Pattern Query Language'
+  s.summary     = 'Fact, Rule, and associated classes'
   s.description = 'Base classes for event sourcing and a rule system.'
   s.authors     = ['Charlie Schwabacher']
   s.email       = 'charlie.schwbacher@chloeandisabel.com'
