@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.authors       = ['Charlie Schwabacher']
   s.email         = 'charlie.schwbacher@chloeandisabel.com'
   s.homepage      = 'https://bitbucket.org/charlieschwabacher/pql'
-  s.require_paths = ["lib"]
   s.files         = ['lib/entry.rb', 'lib/fact.rb', 'lib/fact_store.rb',
                      'lib/ontology.rb', 'lib/rule.rb', 'lib/ruleset.rb',
                      'lib/stream.rb', 'lib/uuid.rb']
