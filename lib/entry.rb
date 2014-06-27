@@ -1,3 +1,5 @@
+require 'uuid'
+
 class Entry
 
   def initialize(description, header, cause = [], attrs = {})

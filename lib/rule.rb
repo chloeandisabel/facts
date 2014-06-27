@@ -1,3 +1,7 @@
+require 'set'
+require 'pql'
+require 'entry'
+
 class Rule
 
   # defaults for dynamically defined methods

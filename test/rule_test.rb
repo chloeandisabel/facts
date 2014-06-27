@@ -1,4 +1,4 @@
-require_relative '../lib/parser.rb'
+require 'pql'
 require_relative '../lib/rule.rb'
 require 'test/unit'
 

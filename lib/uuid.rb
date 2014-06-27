@@ -1,3 +1,5 @@
+require 'macaddr'
+
 class UUID < String
 
   def initialize
