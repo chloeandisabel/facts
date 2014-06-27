@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.description   = 'Base classes for event sourcing and a rule system.'
   s.authors       = ['Charlie Schwabacher']
   s.email         = 'charlie.schwbacher@chloeandisabel.com'
-  s.files         = ['lib/entry.rb', 'lib/fact.rb', 'lib/fact_store.rb',
-                     'lib/ontology.rb', 'lib/rule.rb', 'lib/ruleset.rb',
-                     'lib/stream.rb', 'lib/uuid.rb']
+  s.files         = ['lib/entry.rb', 'lib/fact.rb', 'lib/facts.rb',
+                     'lib/fact_store.rb', 'lib/ontology.rb', 'lib/rule.rb',
+                     'lib/ruleset.rb', 'lib/stream.rb', 'lib/uuid.rb']
 
   s.add_runtime_dependency 'pql'
   s.add_runtime_dependency 'mysql2'
