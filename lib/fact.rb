@@ -34,7 +34,7 @@ class Fact
   end
 
   def method_missing(name, *args, &block)
-    if args.none? && @attrs.has_key? name
+    if args.none? and @attrs.has_key? name
       @attrs[name]
     else
       super name, *args, &block
