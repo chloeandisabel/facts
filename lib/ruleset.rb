@@ -1,3 +1,5 @@
+require 'fact_store'
+
 class Ruleset
 
   def initialize(*rules)
