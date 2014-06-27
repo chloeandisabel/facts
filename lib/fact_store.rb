@@ -59,7 +59,7 @@ class FactStore
       whitelist.each do |col|
         next unless object.has_key? col
         columns << col
-        values << CLIENT.escape object[col]
+        values << CLIENT.escape(object[col])
       end
 
       "INSERT INTO #{table} (#{columns}) VALUES (#{values});"
