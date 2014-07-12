@@ -5,20 +5,35 @@ require 'test/unit'
 
 class ExampleRule < Rule
 
-  @@counter = 0
-
-  def counter
-    @@counter
-  end
-
   pattern <<-PQL
     MATCH EACH AS a WHERE type IS "A";
     MATCH ALL AS b WHERE type IS "B";
   PQL
 
   action do |t|
-    @@counter += 1
   end
+
+end
+
+
+class ExampleRuleWithMethod < Rule
+
+  pattern <<-PQL
+    MATCH ALL AS a WHERE type IS "A";
+  PQL
+
+  method :test_method do
+    1
+  end
+
+  action do |t|
+    @@result = test_method
+  end
+
+  def result
+    @@result
+  end
+
 end
 
 
@@ -28,8 +43,6 @@ class TestRule < Test::Unit::TestCase
   def test_rule
     rule = ExampleRule.new
 
-    assert rule.counter == 0, 'counter should initially be 0'
-
     stream = [
       {id: 1, type: 'A'},
       {id: 2, type: 'A'},
@@ -38,10 +51,19 @@ class TestRule < Test::Unit::TestCase
     ]
 
     entries = rule.apply stream
-
-    assert rule.counter == 2, 'rule should run twice'
     assert entries.length == 2, 'rule should return an array of 2 entries'
-    assert entries.all?{|e| e.facts.length == 0}, 'rule should not write facts'
+  end
+
+  def test_rule_method
+    rule = ExampleRuleWithMethod.new
+
+    stream = [
+      {id: 1, type: 'A'}
+    ]
+
+    entries = rule.apply stream
+    assert entries.length == 1
+    assert rule.result == 1
   end
 
 end
