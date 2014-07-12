@@ -1,6 +1,13 @@
 require 'pql'
 require_relative '../lib/rule.rb'
+require_relative '../lib/ontology.rb'
 require 'test/unit'
+
+
+Ontology.define do
+  type :A
+  type :B
+end
 
 
 class ExampleRule < Rule
@@ -10,7 +17,8 @@ class ExampleRule < Rule
     MATCH ALL AS b WHERE type IS "B";
   PQL
 
-  action do |t|
+  action do |e|
+    e.A
   end
 
 end
@@ -52,6 +60,7 @@ class TestRule < Test::Unit::TestCase
 
     entries = rule.apply stream
     assert entries.length == 2, 'rule should return an array of 2 entries'
+    assert entries.all?{|e| e.facts.length == 1}, 'rule should write one fact in each entry'
   end
 
   def test_rule_method

@@ -18,9 +18,9 @@ class Entry
     @attrs[key]
   end
 
-  def method_missing(name, *args)
+  def method_missing(name, attrs={})
     if Ontology.include? name
-      @facts.push args.merge(@header).merge(type: name, caused_by: @cause)
+      @facts.push attrs.merge(@header).merge(type: name, caused_by: @cause)
     else
       super
     end

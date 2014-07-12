@@ -53,7 +53,7 @@ class Rule
     header = header_for stream
     pattern.apply(stream).each_match do |matches|
       cause = matches.values.flatten.map{|e| e[:id]}.uniq
-      entry = Entry.new header, description, cause
+      entry = Entry.new description, header, cause
       ActionBlockHelper.new(methods, matches).instance_exec entry, &action
       entry
     end
