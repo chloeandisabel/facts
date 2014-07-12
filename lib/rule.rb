@@ -97,7 +97,7 @@ class Rule
     end
 
     def method_missing(name, *args, &block)
-      return instance_eval(@methods[name] *args, &block) if @methods.has_key? name
+      return instance_eval(@methods[name], *args, &block) if @methods.has_key? name
       return @matches[name] if @matches.has_key? name
       super name, *args, &block
     end
