@@ -20,7 +20,7 @@ class Entry
 
   def method_missing(name, attrs={})
     if Ontology.include? name
-      @facts.push attrs.merge(@header).merge(type: name, caused_by: @cause)
+      @facts.push Fact.new(attrs.merge(@header).merge(type: name, caused_by: @cause))
     else
       super
     end
