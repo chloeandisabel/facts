@@ -37,9 +37,11 @@ class TestRule < Test::Unit::TestCase
       {id: 4, type: 'B'}
     ]
 
-    rule.apply stream
+    entries = rule.apply stream
 
     assert rule.counter == 2, 'rule should run twice'
+    assert entries.length == 2, 'rule should return an array of 2 entries'
+    assert entries.all?{|e| e.facts.length == 0}, 'rule should not write facts'
   end
 
 end
