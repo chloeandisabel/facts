@@ -105,7 +105,7 @@ Ontology.define do
 end
 ```
 
- In this example, an fact of type 'A' will belong to the types 'A', 'B', and 'C', and an fact of type 'Z' will belong to the types 'Z', 'A', 'B', and 'C'.
+ In this example, an fact of type 'A' will belong to the types 'A', 'B', and 'C', and an fact of type 'D' will belong to the types 'D', 'A', 'B', and 'C'.
 
 
 
