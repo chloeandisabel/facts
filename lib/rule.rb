@@ -51,7 +51,7 @@ class Rule
 
   def apply(stream)
     header = header_for stream
-    pattern.apply(stream).each_match do |matches|
+    pattern.apply(stream).each do |matches|
       cause = matches.values.flatten.map{|e| e[:id]}.uniq
       entry = Entry.new description, header, cause
       ActionBlockHelper.new(methods, matches).instance_exec entry, &action
