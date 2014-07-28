@@ -51,8 +51,8 @@ class Rule
 
   def apply(stream)
     header = header_for stream
-    pattern.apply(stream).each do |matches|
-      cause = matches.values.flatten.map{|e| e[:id]}.uniq
+    pattern.apply(stream).map do |matches|
+      cause = matches.values.map(&:events).flatten.map{|e| e[:id]}.uniq
       entry = Entry.new description, header, cause
       ActionBlockHelper.new(methods, matches).instance_exec entry, &action
       entry
@@ -98,7 +98,7 @@ class Rule
 
     def method_missing(name, *args)
       return instance_exec(*args, &@methods[name]) if @methods.has_key? name
-      return @matches[name] if @matches.has_key? name
+      return @matches[name].singular ? @matches[name].events.first : @matches[name].events if @matches.has_key? name
       super name, *args, &block
     end
   end

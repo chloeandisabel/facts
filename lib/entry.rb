@@ -1,4 +1,5 @@
 require 'uuid'
+require 'fact'
 
 class Entry
 
