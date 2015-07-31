@@ -1,4 +1,4 @@
-class Stream
+class Factset
   include Enumerable
 
   def initialize(facts)
@@ -7,6 +7,10 @@ class Stream
 
   def each(&block)
     @facts.each &block
+  end
+
+  def +(facts)
+    Factset.new @facts + facts
   end
 
 end

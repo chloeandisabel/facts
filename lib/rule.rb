@@ -40,18 +40,18 @@ class Rule
     self.class.instance_variable_get :@action
   end
 
-  def header_for(stream)
-    ordered_stream = stream.sort_by{|e| e[:created_at]}
+  def header_for(factset)
+    ordered_facts = factset.sort_by{|e| e[:created_at]}
     self.class.instance_variable_get(:@header).reduce({}) do |header, column|
-      source = ordered_stream.find{|f| f[column].present?}
+      source = ordered_facts.find{|f| f[column].present?}
       header[column] = source[column] if source
       header
     end
   end
 
-  def apply(stream)
-    header = header_for stream
-    pattern.apply(stream).map do |matches|
+  def apply(factset)
+    header = header_for factset
+    pattern.apply(factset).map do |matches|
       cause = matches.values.map(&:events).flatten.map{|e| e[:id]}.uniq
       entry = Entry.new description, header, cause
       ActionBlockHelper.new(methods, matches).instance_exec entry, &action

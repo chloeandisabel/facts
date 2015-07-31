@@ -14,7 +14,7 @@ class FactStore
     sql = "SELECT * FROM #{FACT_TABLE} WHERE #{query_attributes.join(' AND ')};"
     result = CLIENT.query(sql, symbolize_keys: true)
 
-    Stream.new(result.map{|row| Fact.new(row)})
+    Factset.new(result.map{|row| Fact.new(row)})
   end
 
 
@@ -36,7 +36,7 @@ class FactStore
 
       sql = @entries.reduce '' do |memo, entry|
         entry_insert = insert_statement_for entry, ENTRY_TABLE, ENTRY_COLUMNS
-        
+
         facts_insert = entry.facts.reduce '' do |memo, fact|
           fact_insert = insert_statement_for fact, FACT_TABLE, FACT_COLUMNS
           memo + fact_insert

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email         = 'charlie.schwbacher@chloeandisabel.com'
   s.files         = ['lib/entry.rb', 'lib/fact.rb', 'lib/facts.rb',
                      'lib/fact_store.rb', 'lib/ontology.rb', 'lib/rule.rb',
-                     'lib/ruleset.rb', 'lib/stream.rb', 'lib/uuid.rb']
+                     'lib/ruleset.rb', 'lib/factset.rb', 'lib/uuid.rb']
 
   s.add_runtime_dependency 'pql'
   s.add_runtime_dependency 'mysql2'

@@ -1,6 +1,7 @@
 require 'pql'
 require_relative '../lib/rule.rb'
 require_relative '../lib/ontology.rb'
+require_relative '../lib/factset.rb'
 require 'test/unit'
 
 
@@ -50,15 +51,14 @@ class TestRule < Test::Unit::TestCase
 
   def test_rule
     rule = ExampleRule.new
-
-    stream = [
+    factset = Factset.new [
       {id: 1, type: 'A'},
       {id: 2, type: 'A'},
       {id: 3, type: 'B'},
       {id: 4, type: 'B'}
     ]
 
-    entries = rule.apply stream
+    entries = rule.apply factset
     assert entries.length == 2, 'rule should return an array of 2 entries'
     assert entries.all?{|e| e.facts.length == 1}, 'rule should write one fact in each entry'
   end
@@ -66,11 +66,9 @@ class TestRule < Test::Unit::TestCase
   def test_rule_method
     rule = ExampleRuleWithMethod.new
 
-    stream = [
-      {id: 1, type: 'A'}
-    ]
+    factset = Factset.new [{id: 1, type: 'A'}]
 
-    entries = rule.apply stream
+    entries = rule.apply factset
     assert entries.length == 1
     assert rule.result == 1
   end

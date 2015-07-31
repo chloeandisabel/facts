@@ -6,13 +6,13 @@ class Ruleset
     @rules = rules
   end
 
-  def apply(stream)
+  def apply(factset)
     transaction = FactStore::Transaction.new
 
     rules.each do |rule|
-      rule.apply(stream).each do |entry|
+      rule.apply(factset).each do |entry|
         transaction << entry
-        stream += entry.facts
+        factset += entry.facts
       end
     end
 
