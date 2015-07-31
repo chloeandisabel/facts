@@ -7,7 +7,7 @@ This repo provides base classes for modeling event sourced data and describing b
 
 ### Facts
 
-Facts are immutable records of events that occur in the world or in our application.  Instead of storing the current state of objects in a problem domain, we can use events to store their history of changes.  From the history, we can recreate their state at any point in time and can audit the state changes that brought them there.
+Facts are immutable records of events that occur in our application or in the external world.  Instead of storing the current state of objects in our problem domain, we can store their history of changes as events.  From the history, we are able to recreate a state at any point in time, and to audit the events that caused it.
 
 In terms of code, facts can be thought of as hashes w/ a unique id, type, set of causes, and any number of other named attributes.
 
@@ -20,7 +20,7 @@ fact[:name] # 'A'
 
 ### Rules
 
-Rules describe a pattern using a block of PQL code, and then accept a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.  Methods can also be defined, and will run in same context as the action.
+Rules are defined by describing a pattern using a block of PQL code, and profiding a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.
 
 The action block is passed one argument, 'e', an `Entry` instance.  The entry has methods available to write each type of fact in the ontology.
 
