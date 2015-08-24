@@ -20,7 +20,7 @@ fact[:name] # 'A'
 
 ### Rules
 
-Rules are defined by describing a pattern using a block of PQL code, and profiding a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.
+Rules are defined by describing a pattern using a block of [PQL](//github.com/chloeandisabel/pql) code, and profiding a block of ruby code to run for each successful match.  The block is run in a context with methods defined for each of the pattern's named matches.
 
 The action block is passed one argument, 'e', an `Entry` instance.  The entry has methods available to write each type of fact in the ontology.
 
